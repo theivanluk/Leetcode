@@ -31,7 +31,7 @@ var levelOrder = function(root) {
     
     values.length > 0 ? result.push(values) : null;
     
-    level.length > 0 ? bfs(level) : null;
+    bfs(level);
   }
   
   bfs(queue);
