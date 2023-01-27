@@ -4,17 +4,11 @@
  * @return {boolean}
  */
 var isSubsequence = function(s, t) {
-    let substring = s;
-    let string = t;
-
-    while (substring.length > 0) {
-        const subLetter = string.indexOf(substring[0]);
-        
-        if (subLetter === -1) { return false }
-
-        substring = substring.slice(1);
-        string = string.slice(subLetter + 1);
+    let sIndex = 0;
+    
+    for (let i = 0; i < t.length; i++) {
+        s[sIndex] === t[i] ? sIndex++ : null;
     }
-
-    return true;
+    
+    return sIndex === s.length;
 };
