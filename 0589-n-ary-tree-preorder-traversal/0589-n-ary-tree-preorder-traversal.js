@@ -11,18 +11,17 @@
  * @return {number[]}
  */
 var preorder = function(root) {
-    
+    if (!root) return [];
     const result = [];
-
-    function dfs (node) {
-        if (!node) { return };
-
-        result.push(node.val);
-
-        node.children.forEach(child => dfs(child));
+    const stack = [root]
+    
+    while (stack.length > 0) {
+        const currentNode = stack.pop();
+        result.push(currentNode.val);
+        for (const child of currentNode.children.reverse()) {
+            stack.push(child);
+        }
     }
-
-    dfs(root);
 
     return result;
 };
