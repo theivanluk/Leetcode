@@ -3,17 +3,23 @@
  * @return {number}
  */
 var pivotIndex = function(nums) {
-    let rightSum = nums.reduce((accum, val) => accum + val, 0) - nums[0];
+    // find the rightmost sum;
     let leftSum = 0;
-
-    if (leftSum === rightSum) { return 0 }
-
-    for (let pivot = 1; pivot < nums.length; pivot++) {
-        leftSum += nums[pivot - 1];
-        rightSum -= nums[pivot];
-
-        if (leftSum === rightSum) { return pivot };
+    let rightSum = 0;
+    let pivotIndex = 0;
+    
+    for (let i = 1; i < nums.length; i++) {
+        rightSum += nums[i];
     }
-
+    // increment through the array rightsum and add leftsum
+    
+    for (let i = 1; i < nums.length; i++) {
+        if (leftSum === rightSum) return pivotIndex;
+        leftSum += nums[i - 1];
+        pivotIndex++;
+        rightSum -= nums[i];
+    }
+    if (leftSum === rightSum) return pivotIndex;
+    // return -1
     return -1;
 };
