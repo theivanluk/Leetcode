@@ -11,12 +11,28 @@
  * @return {boolean}
  */
 var isValidBST = function(root) {
-  function dfs (node, lowerLimit = Number.NEGATIVE_INFINITY, upperLimit = Number.POSITIVE_INFINITY) {
-    if (!node) { return true };
-    if (node.val <= lowerLimit || node.val >= upperLimit) { return false }
+    // use in order traversal
     
-    return true && dfs(node.left, lowerLimit, node.val) && dfs(node.right, node.val, upperLimit);
-  }
-  
-  return dfs(root);
+    if (!root) return true;
+    
+    const stack = [];
+    const inOrder = [];
+    let curr = root;
+    let min;
+    
+    while (curr !== null || stack.length > 0) {
+        while (curr !== null) {
+            stack.push(curr);
+            curr = curr.left;
+        }
+        curr = stack.pop();
+        inOrder.push(curr.val);
+        curr = curr.right;
+    }
+    
+    for (let i = 1; i < inOrder.length; i++) {
+        if (inOrder[i - 1] >= inOrder[i]) return false
+    }
+    
+    return true;
 };
