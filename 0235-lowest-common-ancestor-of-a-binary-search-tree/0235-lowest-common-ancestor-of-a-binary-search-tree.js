@@ -52,17 +52,40 @@
 
 var lowestCommonAncestor = function (root, p, q) {
   
-  function dfs (node, p, q) {
-    if (!node) { return }
+// Recursive method
     
-    if (p.val < node.val && q.val < node.val) {
-      return dfs(node.left, p, q);
-    } else if (p.val > node.val && q.val > node.val){
-      return dfs(node.right, p, q);  
+//   function dfs (node, p, q) {
+//     if (!node) { return }
+    
+//     if (p.val < node.val && q.val < node.val) {
+//       return dfs(node.left, p, q);
+//     } else if (p.val > node.val && q.val > node.val){
+//       return dfs(node.right, p, q);  
+//     }
+    
+//     return node;
+//   }
+  
+//   return dfs(root, p, q);
+    
+    
+// Iterative method - bfs
+    let low, high
+    if (p.val < q.val) {
+        low = p;
+        high = q;
+    } else {
+        low = q;
+        high = p;
     }
     
-    return node;
-  }
-  
-  return dfs(root, p, q);
+    const queue = [root];
+    while (queue.length > 0) {
+        const currentNode = queue.pop();
+        if (low.val <= currentNode.val && currentNode.val <= high.val) {
+            return currentNode;
+        }
+        currentNode.left ? queue.push(currentNode.left) : null;
+        currentNode.right ? queue.push(currentNode.right) : null;
+    } 
 };
