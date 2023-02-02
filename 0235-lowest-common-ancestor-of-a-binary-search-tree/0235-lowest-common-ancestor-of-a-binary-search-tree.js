@@ -81,7 +81,7 @@ var lowestCommonAncestor = function (root, p, q) {
     
     const queue = [root];
     while (queue.length > 0) {
-        const currentNode = queue.pop();
+        const currentNode = queue.shift();
         if (low.val <= currentNode.val && currentNode.val <= high.val) {
             return currentNode;
         }
