@@ -11,27 +11,40 @@
  * @return {ListNode}
  */
 var detectCycle = function(head) {
-    if (head === null) { return null };
+//     if (head === null) { return null };
 
-    let current = head;
-    let double = head;
+//     let current = head;
+//     let double = head;
 
-    do {
-        if (double.next === null || double.next.next === null) {
-            return null
+//     do {
+//         if (double.next === null || double.next.next === null) {
+//             return null
+//         }
+
+//         double = double.next.next;
+//         current = current.next;
+
+//     } while (double !== current)
+
+//     double = head;
+
+//     while (double !== current) {
+//         double = double.next;
+//         current = current.next;
+//     }
+
+//     return current;
+    if (!head) return null
+    
+    const nodeSet = new Set();
+    
+    while (head.next !== null) {
+        if (nodeSet.has(head)) {
+            return head;
         }
-
-        double = double.next.next;
-        current = current.next;
-
-    } while (double !== current)
-
-    double = head;
-
-    while (double !== current) {
-        double = double.next;
-        current = current.next;
+        nodeSet.add(head);
+        head = head.next;
     }
-
-    return current;
+    
+    return null;
 };
