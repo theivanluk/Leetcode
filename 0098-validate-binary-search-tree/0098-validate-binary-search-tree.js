@@ -18,7 +18,7 @@ var isValidBST = function(root) {
     const stack = [];
     const inOrder = [];
     let curr = root;
-    let min;
+    let min = null;
     
     while (curr !== null || stack.length > 0) {
         while (curr !== null) {
@@ -26,13 +26,11 @@ var isValidBST = function(root) {
             curr = curr.left;
         }
         curr = stack.pop();
-        inOrder.push(curr.val);
+        if (min !== null && curr.val <= min.val) return false
+        min = curr;
         curr = curr.right;
     }
-    
-    for (let i = 1; i < inOrder.length; i++) {
-        if (inOrder[i - 1] >= inOrder[i]) return false
-    }
+
     
     return true;
 };
