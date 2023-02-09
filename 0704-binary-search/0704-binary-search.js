@@ -4,18 +4,21 @@
  * @return {number}
  */
 var search = function(nums, target) {
-    const getIndex = (start, end) => Math.floor((start + end) / 2);
+    let index = Math.floor(nums.length - 1/ 2);
+    let lowerLimit = 0;
+    let upperLimit = nums.length;
     
-    let start = 0;
-    let end = nums.length - 1;
-    let index = getIndex(start, end);
-    
-    while (nums[index] !== target && index!== -1) {
-        index = start === end ? -1 :
-                nums[index] > target 
-                    ? (end = index - 1, getIndex(start, end)) 
-                    : (start = index + 1, getIndex(start, end))
+    while (0 <= index && index < nums.length) {
+        if (nums[index] === target) return index;
+        if (nums[index] < target) {
+            lowerLimit = index;
+        }
+        if (nums[index] > target) {
+            upperLimit = index;
+        }
+        if (Math.floor((lowerLimit + upperLimit) / 2) === index) break;
+        index = Math.floor((lowerLimit + upperLimit) / 2);
     }
     
-    return index;
+    return -1;
 };
