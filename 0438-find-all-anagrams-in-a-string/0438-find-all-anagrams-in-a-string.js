@@ -30,16 +30,14 @@ var findAnagrams = function(s, p) {
     let lag = 0;
     let lead = p.length;
     
-    if (isEqual(sCount, pCount)) result.push(lag);
-
     while (lead < s.length) {
+        if (isEqual(sCount, pCount)) result.push(lag);
         sCount[getCharIndex(s[lag])]--;
         sCount[getCharIndex(s[lead])]++;
         lag++;
         lead++;
-        if (isEqual(sCount, pCount)) result.push(lag);
     }
     
-    
+    if (isEqual(sCount, pCount)) result.push(lag);
     return result;
 };
