@@ -4,11 +4,7 @@ class Solution {
         
         for (int i = 0; i < s.length(); i++) {
             char letter = s.charAt(i);
-            if(stringMap.containsKey(letter)) {
-                stringMap.put(letter, stringMap.get(letter) + 1);
-            } else {
-                stringMap.put(letter, 1);
-            }
+            stringMap.put(letter, stringMap.getOrDefault(letter, 0) + 1);
         }
         
         for (int i = 0; i < s.length(); i++) {
