@@ -1,5 +1,6 @@
 class Solution {
     public int lengthOfLastWord(String s) {
-        return s.split("\s")[s.split("\s").length - 1].length();
+        String[] s_split = s.split("\s");
+        return s_split[s_split.length - 1].length();
     }
 }
